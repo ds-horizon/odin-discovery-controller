@@ -1,0 +1,123 @@
+# Default values for odin-service-discovery-controller
+
+## @param replicaCount Number of controller replicas
+replicaCount: 1
+
+## @section Image Configuration
+## @extra image Configuration for the container image
+image:
+  ## @param image.registry Container image registry
+  registry: docker.io
+  ## @param image.repository Container image repository
+  repository: odinhq/discovery-controller
+  ## @param image.pullPolicy Image pull policy
+  pullPolicy: IfNotPresent
+  ## @param image.tag Container image tag (overrides the chart appVersion)
+  tag: "0.0.1"
+  ## @param image.pullSecrets Docker registry secret names as an array of strings or maps with name field
+  pullSecrets: []
+
+## @param nameOverride String to partially override common.names.fullname template with a string (will prepend the release name)
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname template with a string
+fullnameOverride: ""
+
+## @section Service Account
+## @extra serviceAccount Configuration for the service account
+serviceAccount:
+  ## @param serviceAccount.create Specifies whether a service account should be created
+  create: true
+  ## @param serviceAccount.annotations Annotations to add to the service account
+  annotations: {}
+  ## @param serviceAccount.name The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
+  ## @param serviceAccount.automountServiceAccountToken Automount API credentials for a service account
+  automountServiceAccountToken: true
+
+## @section Pod Security Context
+## @extra podSecurityContext Pod security context configuration
+podSecurityContext:
+  ## @param podSecurityContext.fsGroup Group ID for the pod's filesystem
+  fsGroup: 2000
+
+## @section Container Security Context
+## @extra securityContext Security context for the container
+securityContext:
+  capabilities:
+    ## @param securityContext.capabilities.drop List of capabilities to drop
+    drop:
+    - ALL
+  ## @param securityContext.readOnlyRootFilesystem Whether to use a read-only root filesystem
+  readOnlyRootFilesystem: true
+  ## @param securityContext.runAsNonRoot Whether to run as non-root user
+  runAsNonRoot: true
+  ## @param securityContext.runAsUser User ID to run the container as
+  runAsUser: 1000
+
+## @section Controller Configuration
+## @extra controller Controller runtime configuration
+controller:
+  ## @param controller.workers Number of worker threads for processing
+  workers: 5
+  
+  ## @param controller.discoveryBackend Discovery backend service address (required)
+  discoveryBackend: ""
+  
+  ## @param controller.batchSize Request batch size
+  batchSize: 5
+  
+  ## @param controller.orgId Organisation ID (required)
+  orgId: ""
+  
+  ## @param controller.accountName Account name (required)
+  accountName: ""
+  
+  ## @param controller.batchPushTimeout Batch push timeout in milliseconds
+  batchPushTimeout: 500ms
+
+## @section Namespace Configuration
+## @param namespace Namespace to watch. If set, the controller will only watch resources in that namespace. If empty, it will watch all namespaces (cluster-scoped).
+namespace: ""
+
+## @section RBAC Configuration
+## @extra rbac RBAC (Role-Based Access Control) configuration
+rbac:
+  ## @param rbac.create Specifies whether RBAC resources should be created
+  create: true
+  ## @param rbac.clusterScoped If true, creates ClusterRole and ClusterRoleBinding (cluster-scoped). If false, creates Role and RoleBinding (namespace-scoped).
+  clusterScoped: true
+
+## @section Pod Configuration
+## @param podAnnotations Pod annotations
+podAnnotations: {}
+
+## @param podLabels Pod labels
+podLabels: {}
+
+## @section Node Configuration
+## @param nodeSelector Node selector for pod assignment
+nodeSelector: {}
+
+## @param tolerations Tolerations for pod assignment
+tolerations: []
+
+## @param affinity Affinity rules for pod assignment
+affinity: {}
+
+## @section Resource Configuration
+## @extra resources Resource limits and requests
+resources:
+  limits:
+    ## @param resources.limits.cpu CPU limit
+    cpu: {}
+    ## @param resources.limits.memory Memory limit
+    memory: {}
+  requests:
+    ## @param resources.requests.cpu CPU request
+    cpu: {}
+    ## @param resources.requests.memory Memory request
+    memory: {}
+
+## @section Additional Configuration
+## @param env Additional environment variables
+env: []
