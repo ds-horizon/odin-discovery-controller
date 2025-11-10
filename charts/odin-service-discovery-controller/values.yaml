@@ -59,19 +59,19 @@ securityContext:
 controller:
   ## @param controller.workers Number of worker threads for processing
   workers: 5
-  
+
   ## @param controller.discoveryBackend Discovery backend service address (required)
   discoveryBackend: ""
-  
+
   ## @param controller.batchSize Request batch size
   batchSize: 5
-  
+
   ## @param controller.orgId Organisation ID (required)
   orgId: ""
-  
+
   ## @param controller.accountName Account name (required)
   accountName: ""
-  
+
   ## @param controller.batchPushTimeout Batch push timeout in milliseconds
   batchPushTimeout: 500ms
 

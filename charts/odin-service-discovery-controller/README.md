@@ -229,4 +229,3 @@ helm template odin-service-discovery-controller ./helm/odin-service-discovery-co
 - When `namespace` is set, the controller only watches that namespace and requires namespace-scoped RBAC (`rbac.clusterScoped=false`)
 - When `namespace` is empty, the controller watches all namespaces and requires cluster-scoped RBAC
 - The controller automatically handles Service endpoint changes and Ingress load balancer address updates
-

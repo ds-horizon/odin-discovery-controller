@@ -94,7 +94,7 @@ func (c *Webclient) processBatch() {
 					<-timer.C
 				}
 				<-ackChannel //block until you get the acknowledgement for the current batch
-				log.Infof("Acknowledgement recieved for batch")
+				log.Infof("Acknowledgement received for batch")
 				timer.Reset(c.batchDuration)
 			}
 		case <-timer.C:
@@ -110,7 +110,7 @@ func (c *Webclient) processBatch() {
 				}
 				batch = nil
 				<-ackChannel
-				log.Infof("Acknowledgement recieved for batch")
+				log.Infof("Acknowledgement received for batch")
 			}
 			timer.Reset(c.batchDuration)
 		}

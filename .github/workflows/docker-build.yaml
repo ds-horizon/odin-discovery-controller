@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: k8s
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -27,7 +27,7 @@ jobs:
         id: extract_version
         run: |
           VERSION=$(grep -oP '(?<=const Version = "v)[^"]*' version.go)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Publish docker image
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
