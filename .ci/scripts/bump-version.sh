@@ -48,26 +48,8 @@ echo "Bumping version to: v${BUMP_VERSION}"
 sed -i.bak "s/const Version = \"v.*\"/const Version = \"v${BUMP_VERSION}\"/" version.go
 rm -f version.go.bak
 
-# Update Chart.yaml appVersion if it exists
-if [ -f "charts/odin-service-discovery-controller/Chart.yaml" ]; then
-  sed -i.bak "s/^appVersion: .*/appVersion: \"v${BUMP_VERSION}\"/" charts/odin-service-discovery-controller/Chart.yaml
-  rm -f charts/odin-service-discovery-controller/Chart.yaml.bak
-fi
-
-# Update values.yaml image.tag if it exists
-if [ -f "charts/odin-service-discovery-controller/values.yaml" ]; then
-  sed -i.bak "s/^  tag: .*/  tag: \"${BUMP_VERSION}\"/" charts/odin-service-discovery-controller/values.yaml
-  rm -f charts/odin-service-discovery-controller/values.yaml.bak
-fi
-
 # Stage changes
 git add version.go
-if [ -f "charts/odin-service-discovery-controller/Chart.yaml" ]; then
-  git add charts/odin-service-discovery-controller/Chart.yaml
-fi
-if [ -f "charts/odin-service-discovery-controller/values.yaml" ]; then
-  git add charts/odin-service-discovery-controller/values.yaml
-fi
 
 # Commit and push
 git commit -m "chore: release version v${RELEASE_VERSION} and bump version to v${BUMP_VERSION}"
