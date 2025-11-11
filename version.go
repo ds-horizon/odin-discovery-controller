@@ -1,4 +1,4 @@
 package odinservicediscoverycontroller
 
 // Version of the controller
-const Version = "v0.0.17"
+const Version = "v0.0.2"

@@ -9,9 +9,9 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	corev1 "k8s.io/api/core/v1"
-	discoverycontroller "odin-service-discovery-controller/internal/discovery-controller"
-	"odin-service-discovery-controller/internal/rest"
-	"odin-service-discovery-controller/internal/util"
+	discoverycontroller "odin-discovery-controller/internal/discovery-controller"
+	"odin-discovery-controller/internal/rest"
+	"odin-discovery-controller/internal/util"
 )
 
 func main() {

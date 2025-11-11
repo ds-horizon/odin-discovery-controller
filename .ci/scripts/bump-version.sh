@@ -3,9 +3,9 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+PROJECT_ROOT="$(dirname "$(dirname "${SCRIPT_DIR}")")"
 # Extract current version from version.go
-RELEASE_VERSION=$(grep 'const Version = "v' "$PROJECT_ROOT/version.go" | sed -E 's/.*const Version = "v(.*)"/\1/')
+RELEASE_VERSION=$(grep 'const Version = "v' "${PROJECT_ROOT}/version.go" | sed -E 's/.*const Version = "v(.*)"/\1/')
 
 if [ -z "${RELEASE_VERSION}" ]; then
 	echo "Error: Could not extract version from version.go"
@@ -27,11 +27,11 @@ BUMP_VERSION="${MAJOR}.${MINOR}.${PATCH}"
 echo "Bumping version to: v${BUMP_VERSION}"
 
 # Update version.go
-sed -i.bak "s/const Version = \"v.*\"/const Version = \"v${BUMP_VERSION}\"/" "$PROJECT_ROOT/version.go"
-rm -f $PROJECT_ROOT/version.go.bak
+sed -i.bak "s/const Version = \"v.*\"/const Version = \"v${BUMP_VERSION}\"/" "${PROJECT_ROOT}/version.go"
+rm -f "${PROJECT_ROOT}/version.go.bak"
 
 # Stage changes
-git add $PROJECT_ROOT/version.go
+git add "${PROJECT_ROOT}/version.go"
 
 # Commit and push
 git commit -m "chore: release version v${RELEASE_VERSION} and bump version to v${BUMP_VERSION}"
