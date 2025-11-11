@@ -17,7 +17,7 @@ The Odin Service Discovery Controller watches Kubernetes Services, Endpoints, an
 ### Basic Installation
 
 ```bash
-helm install odin-service-discovery-controller ./helm/odin-service-discovery-controller \
+helm install odin-discovery-controller ./helm/odin-discovery-controller \
   --set controller.discoveryBackend="discovery-service.example.com:8080" \
   --set controller.orgId="your-org-id" \
   --set controller.accountName="your-account-name" \
@@ -30,7 +30,7 @@ helm install odin-service-discovery-controller ./helm/odin-service-discovery-con
 To watch resources in a specific namespace only:
 
 ```bash
-helm install odin-service-discovery-controller ./helm/odin-service-discovery-controller \
+helm install odin-discovery-controller ./helm/odin-discovery-controller \
   --namespace odin-system \
   --create-namespace \
   --set namespace="default" \
@@ -193,7 +193,7 @@ spec:
 ## Uninstallation
 
 ```bash
-helm uninstall odin-service-discovery-controller
+helm uninstall odin-discovery-controller
 ```
 
 ## Development
@@ -201,13 +201,13 @@ helm uninstall odin-service-discovery-controller
 ### Linting the Chart
 
 ```bash
-helm lint ./helm/odin-service-discovery-controller
+helm lint ./helm/odin-discovery-controller
 ```
 
 ### Dry Run Installation
 
 ```bash
-helm install odin-service-discovery-controller ./helm/odin-service-discovery-controller \
+helm install odin-discovery-controller ./helm/odin-discovery-controller \
   --dry-run --debug \
   --set controller.discoveryBackend="discovery-service.example.com:8080" \
   --set controller.orgId="your-org-id" \
@@ -217,7 +217,7 @@ helm install odin-service-discovery-controller ./helm/odin-service-discovery-con
 ### Template Rendering
 
 ```bash
-helm template odin-service-discovery-controller ./helm/odin-service-discovery-controller \
+helm template odin-discovery-controller ./helm/odin-discovery-controller \
   --set controller.discoveryBackend="discovery-service.example.com:8080" \
   --set controller.orgId="your-org-id" \
   --set controller.accountName="your-account-name"

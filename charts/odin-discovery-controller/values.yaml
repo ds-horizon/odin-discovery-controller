@@ -1,4 +1,4 @@
-# Default values for odin-service-discovery-controller
+# Default values for odin-discovery-controller
 
 ## @param replicaCount Number of controller replicas
 replicaCount: 1

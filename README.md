@@ -36,11 +36,11 @@ Once the chart is published to GitHub Pages, you can install it via:
 
 ```bash
 # Add the Helm repository
-helm repo add odin-service-discovery-controller https://<your-org>.github.io/odin-service-discovery-controller/helm-repo
+helm repo add odin-discovery-controller https://<your-org>.github.io/odin-discovery-controller/helm-repo
 helm repo update
 
 # Install the controller
-helm install odin-service-discovery-controller odin-service-discovery-controller/odin-service-discovery-controller \
+helm install odin-discovery-controller odin-discovery-controller/odin-discovery-controller \
   --namespace odin-system \
   --create-namespace \
   --set controller.discoveryBackend="discovery-service.example.com:8080" \
@@ -51,7 +51,7 @@ helm install odin-service-discovery-controller odin-service-discovery-controller
 #### Using Local Chart
 
 ```bash
-helm install odin-service-discovery-controller ./charts/odin-service-discovery-controller \
+helm install odin-discovery-controller ./charts/odin-discovery-controller \
   --namespace odin-system \
   --create-namespace \
   --set controller.discoveryBackend="discovery-service.example.com:8080" \
@@ -114,7 +114,7 @@ annotations:
 
 ## Configuration
 
-See the [Helm Chart README](./charts/odin-service-discovery-controller/README.md) for complete configuration options.
+See the [Helm Chart README](charts/odin-discovery-controller/README.md) for complete configuration options.
 
 ### Key Configuration Parameters
 
@@ -156,7 +156,7 @@ docker build -t odin-discovery-controller:latest .
 ### Linting
 
 ```bash
-cd charts/odin-service-discovery-controller
+cd charts/odin-discovery-controller
 helm lint .
 ```
 
@@ -173,7 +173,7 @@ helm template test-release .
 ### Updating Dependencies
 
 ```bash
-cd charts/odin-service-discovery-controller
+cd charts/odin-discovery-controller
 helm dependency update
 ```
 
@@ -195,7 +195,7 @@ When you create a git tag starting with `v` (e.g., `v0.1.0`), the release workfl
 4. Create a GitHub Release with chart artifacts
 5. Publish the chart repository to GitHub Pages
 
-The chart will be available at: `https://<your-org>.github.io/odin-service-discovery-controller/helm-repo`
+The chart will be available at: `https://<your-org>.github.io/odin-discovery-controller/helm-repo`
 
 ## Contributing
 
@@ -214,5 +214,5 @@ For issues and questions, please open an issue on GitHub.
 
 ## Links
 
-- [Helm Chart Documentation](./charts/odin-service-discovery-controller/README.md)
+- [Helm Chart Documentation](charts/odin-discovery-controller/README.md)
 - [Kubernetes Documentation](https://kubernetes.io/docs/)

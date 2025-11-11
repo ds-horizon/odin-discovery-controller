@@ -1,5 +1,5 @@
 apiVersion: v2
-name: odin-service-discovery-controller
+name: odin-discovery-controller
 description: A Helm chart for Odin Service Discovery Controller
 type: application
 version: 0.0.1

@@ -17,7 +17,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/util/workqueue"
-	odinrest "odin-service-discovery-controller/internal/rest"
+	odinrest "odin-discovery-controller/internal/rest"
 )
 
 const (

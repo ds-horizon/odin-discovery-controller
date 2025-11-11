@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"net/http"
-	idgenerator "odin-service-discovery-controller/internal/id-generator"
+	idgenerator "odin-discovery-controller/internal/id-generator"
 	"strconv"
 	"sync"
 	"time"

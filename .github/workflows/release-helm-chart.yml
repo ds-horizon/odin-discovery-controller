@@ -41,7 +41,7 @@ jobs:
 
       - name: Update Chart.yaml version
         run: |
-          cd charts/odin-service-discovery-controller
+          cd charts/odin-discovery-controller
           # Update chart version
           sed -i.bak "s/^version: .*/version: ${{ github.event.inputs.version }}/" Chart.yaml
           # Update app version
@@ -52,7 +52,7 @@ jobs:
 
       - name: Update values.yaml image.tag
         run: |
-          cd charts/odin-service-discovery-controller
+          cd charts/odin-discovery-controller
           sed -i.bak "s/^  tag: .*/  tag: \"${{ env.APP_VERSION }}\"/" values.yaml
           rm -f values.yaml.bak
           echo "Updated values.yaml image.tag:"
@@ -69,12 +69,12 @@ jobs:
 
       - name: Update Chart.lock
         run: |
-          cd charts/odin-service-discovery-controller
+          cd charts/odin-discovery-controller
           helm dependency update
 
       - name: Lint chart
         run: |
-          cd charts/odin-service-discovery-controller
+          cd charts/odin-discovery-controller
           helm lint .
 
       - name: Run chart-releaser

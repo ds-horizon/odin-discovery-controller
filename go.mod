@@ -1,4 +1,4 @@
-module odin-service-discovery-controller
+module odin-discovery-controller
 
 go 1.17
 

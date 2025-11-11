@@ -21,8 +21,8 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- include "odin-service-discovery-controller.imagePullSecrets" . | nindent 6 }}
-      serviceAccountName: {{ include "odin-service-discovery-controller.serviceAccountName" . }}
+      {{- include "odin-discovery-controller.imagePullSecrets" . | nindent 6 }}
+      serviceAccountName: {{ include "odin-discovery-controller.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

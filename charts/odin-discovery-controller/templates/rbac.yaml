@@ -38,7 +38,7 @@ roleRef:
   name: {{ include "common.names.fullname" . }}
 subjects:
 - kind: ServiceAccount
-  name: {{ include "odin-service-discovery-controller.serviceAccountName" . }}
+  name: {{ include "odin-discovery-controller.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 {{- else }}
 ---
@@ -81,7 +81,7 @@ roleRef:
   name: {{ include "common.names.fullname" . }}
 subjects:
 - kind: ServiceAccount
-  name: {{ include "odin-service-discovery-controller.serviceAccountName" . }}
+  name: {{ include "odin-discovery-controller.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 {{- end }}
 {{- end }}
