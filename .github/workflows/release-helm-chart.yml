@@ -35,8 +35,8 @@ jobs:
         id: app_version
         run: |
           APP_VERSION="${{ github.event.inputs.app_version }}"
-          echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
-          echo "app_version=$APP_VERSION" >> $GITHUB_OUTPUT
+          echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
+          echo "app_version=$APP_VERSION" >> "$GITHUB_OUTPUT"
           echo "App version: $APP_VERSION"
 
       - name: Update Chart.yaml version

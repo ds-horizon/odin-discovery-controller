@@ -73,10 +73,10 @@ release:
   mode: replace
   header: |
     ## {{ .TagName }}
-    
+
     {{ .ReleaseNotes }}
 
   footer: |
     ---
-    
+
     **Full Changelog**: {{ .PreviousTag }}...{{ .Tag }}
