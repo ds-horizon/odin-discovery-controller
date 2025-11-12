@@ -1,0 +1,85 @@
+name: Release Helm Chart
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Chart version to release (e.g., 0.1.0)'
+        required: true
+        type: string
+      app_version:
+        description: 'App image version to release (e.g., 1.0.3)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set app version
+        id: app_version
+        run: |
+          APP_VERSION="${{ github.event.inputs.app_version }}"
+          echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
+          echo "app_version=$APP_VERSION" >> "$GITHUB_OUTPUT"
+          echo "App version: $APP_VERSION"
+
+      - name: Update Chart.yaml version
+        run: |
+          cd charts/odin-discovery-controller
+          # Update chart version
+          sed -i.bak "s/^version: .*/version: ${{ github.event.inputs.version }}/" Chart.yaml
+          # Update app version
+          sed -i.bak "s/^appVersion: .*/appVersion: \"v${{ env.APP_VERSION }}\"/" Chart.yaml
+          rm -f Chart.yaml.bak
+          echo "Updated Chart.yaml:"
+          cat Chart.yaml
+
+      - name: Update values.yaml image.tag
+        run: |
+          cd charts/odin-discovery-controller
+          sed -i.bak "s/^  tag: .*/  tag: \"${{ env.APP_VERSION }}\"/" values.yaml
+          rm -f values.yaml.bak
+          echo "Updated values.yaml image.tag:"
+          grep "^  tag:" values.yaml
+
+      - name: Install Helm
+        uses: azure/setup-helm@1a275c3b69536ee54be43f2070a358922e12c8d4 # v4.3.1
+        with:
+          version: 'latest'
+
+      - name: Add dependency chart repos
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+
+      - name: Update Chart.lock
+        run: |
+          cd charts/odin-discovery-controller
+          helm dependency update
+
+      - name: Lint chart
+        run: |
+          cd charts/odin-discovery-controller
+          helm lint .
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@be16258da8010256c6e82849661221415f031968 # v1.5.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_PACKAGE_PATH: "charts"
+          CR_RELEASE_NAME_TEMPLATE: "Helm Chart Release v{{ .Version }}-helm-chart"

@@ -1,0 +1,23 @@
+CHART NAME: {{ .Chart.Name }}
+CHART VERSION: {{ .Chart.Version }}
+APP VERSION: {{ .Chart.AppVersion }}
+
+1. Check controller status:
+  kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "common.names.name" . }},app.kubernetes.io/instance={{ .Release.Name }}"
+
+2. View controller logs:
+  kubectl logs --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "common.names.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" --tail=-1
+
+3. Controller Configuration:
+  - Discovery Backend: {{ .Values.controller.discoveryBackend | default "Not configured" }}
+  - Organisation ID: {{ .Values.controller.orgId | default "Not configured" }}
+  - Account Name: {{ .Values.controller.accountName | default "Not configured" }}
+  - Workers: {{ .Values.controller.workers }}
+  - Batch Size: {{ .Values.controller.batchSize }}
+  - Namespace Scope: {{ if .Values.namespace }}{{ .Values.namespace }}{{ else }}All namespaces (cluster-scoped){{ end }}
+
+{{- if .Values.namespace }}
+4. Note: Controller is configured to watch namespace: {{ .Values.namespace }}
+{{- else }}
+4. Note: Controller is configured to watch all namespaces (cluster-scoped)
+{{- end }}

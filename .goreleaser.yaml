@@ -1,0 +1,43 @@
+version: 1
+
+builds:
+  - id: odin-discovery-controller
+    main: ./cmd/main.go
+    binary: odin-discovery-controller
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+
+dockers:
+  - goos: linux
+    goarch: amd64
+    image_templates:
+      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.DOCKER_REPOSITORY }}:{{ .Version }}"
+      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.DOCKER_REPOSITORY }}:latest"
+    dockerfile: Dockerfile
+    use: buildx
+    build_flag_templates:
+      - --pull
+      - --platform=linux/amd64
+
+  - goos: linux
+    goarch: arm64
+    image_templates:
+      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.DOCKER_REPOSITORY }}:{{ .Version }}-arm64"
+    dockerfile: Dockerfile
+    use: buildx
+    build_flag_templates:
+      - --pull
+      - --platform=linux/arm64
+
+dockermanifests:
+  - name_template: "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.DOCKER_REPOSITORY }}:{{ .Version }}"
+    image_templates:
+      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.DOCKER_REPOSITORY }}:{{ .Version }}"
+      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.DOCKER_REPOSITORY }}:{{ .Version }}-arm64"
+    skip_push: false
