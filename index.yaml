@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  odin-discovery-controller:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-11-25T12:03:58.402702089Z"
+    dependencies:
+    - condition: common.enabled
+      name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    description: A Helm chart for Odin Service Discovery Controller
+    digest: 3cc31a360e50f8ccb54a53a3f71499e1fd262a1642f5fa2f49233d1611556101
+    keywords:
+    - kubernetes
+    - odin
+    maintainers:
+    - name: Dream11
+      url: https://www.dream11.com/
+    name: odin-discovery-controller
+    type: application
+    urls:
+    - https://github.com/ds-horizon/odin-discovery-controller/releases/download/odin-discovery-controller-helm-chart-0.0.1/odin-discovery-controller-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-11-25T12:03:58.40272428Z"
