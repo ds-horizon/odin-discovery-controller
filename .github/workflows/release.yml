@@ -77,6 +77,10 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Bump version
-        run: ./bump-version.sh
+        run: .ci/scripts/bump-version.sh || {
+          echo "::warn:: Version bump failed. Manual intervention may be required."
+          echo "The release was successful but the version wasn't bumped in the repository."
+          exit 0  # Don't fail the release for this
+          }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
