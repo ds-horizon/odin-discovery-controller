@@ -83,4 +83,5 @@ jobs:
           mark_as_latest: false
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_TAG_TEMPLATE: "{{ .Name }}-{{ .Version }}"
           CR_RELEASE_NAME_TEMPLATE: "Helm Chart Release v{{ .Version }}-helm-chart"
