@@ -68,7 +68,6 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 ## Documentation
 
 * Keep README.md updated
-* Update API documentation
 * Add inline code comments
 * Update examples when needed
 
