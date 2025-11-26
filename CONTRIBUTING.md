@@ -48,6 +48,23 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 * Use meaningful variable and method names
 * Keep methods focused and concise
 
+### Formatting
+
+* Before committing, run go fmt to automatically format your code
+
+### Linting
+
+* This project uses `golangci-lint` in CI to enforce code quality.
+* Please ensure you:
+    * Install `golangci-lint` locally
+    * Run `golangci-lint` before submitting a pull request
+    * Address all linter warnings or errors
+
+### Commit Signing
+
+* Ensure that your commits are `GPG-` or `SSH-signed`
+* Unsigned commits may be rejected during review.
+
 ## Documentation
 
 * Keep README.md updated
