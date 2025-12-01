@@ -8,8 +8,8 @@ keywords:
   - kubernetes
   - odin
 maintainers:
-  - name: Dream11
-    url: https://www.dream11.com/
+  - name: Dream Horizon
+    url: https://dreamhorizon.org/
 dependencies:
   - name: common
     version: 2.x.x
