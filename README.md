@@ -206,7 +206,7 @@ The chart will be available at: `https://<your-org>.github.io/odin-discovery-con
 
 ## License
 
-Copyright © Dream11. All rights reserved.
+Copyright © Dream Horizon. All rights reserved.
 
 ## Support
 
